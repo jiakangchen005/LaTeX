@@ -1,0 +1,173 @@
+% jiakang.sty
+
+\ProvidesPackage{jiakang}
+
+% mla = false
+\newif\ifmla\mlafalse
+% cmhb = false
+\newif\ifcmhb\cmhbfalse
+
+% set mla = true if specified
+\DeclareOption{mla}{\mlatrue}
+% set cmhb = true if specified
+\DeclareOption{cmhb}{\cmhbtrue}
+
+% execute the stuff above
+\ProcessOptions\relax
+
+% if mla == true
+\ifmla
+	% Change Font Size To 12
+	\documentclass[12pt]{article}
+
+	% US Letter Paper (8.5in x 11in)
+	% 1 Inch Margins On All Sides
+	\RequirePackage[paperwidth = 8.5in, paperheight = 11in, left = 1in, right = 1in, top = 1in, bottom = 1in]{geometry}
+
+	% times new roman font
+	\RequirePackage{mathptmx}
+
+	% double space
+	\RequirePackage[doublespacing]{setspace}
+
+	% single spacing between sentences
+	\frenchspacing
+
+	% half inch indent
+	\setlength\parindent{0.5in}
+
+	% no Page Numbers
+	\pagenumbering{gobble}
+\fi
+
+% if cmhb == true
+\ifcmhb
+	% asymptote, but better
+	\RequirePackage{tikz}
+
+	% grids and stuff like that
+	\RequirePackage{array}
+
+	% New Century Schoolbook font
+	% aka fouriernc, but no math
+	\RequirePackage{newcent}
+
+	% links
+	\RequirePackage{hyperref}
+
+	% doesn't work without this
+	\RequirePackage{mathtools}
+
+	% cool boxes
+	\RequirePackage{tcolorbox}
+
+	% title formatting
+	% [explicit] allows swapping the title text with the numbering
+	\RequirePackage[explicit]{titlesec}
+
+	% US letter paper (8.5in x 11in) + 1 inch margins on all sides
+	% 'murica!
+	\RequirePackage[paperwidth = 8.5in, paperheight = 11in, left = 1in, right = 1in, top = 1in, bottom = 1in]{geometry}
+
+	% newline command for programmers
+	\newcommand{\n}{\vspace{0.2in}}
+
+	% start each section (chapter) on a new page
+	\newcommand{\sectionbreak}{\newpage}
+
+	% custom colors
+	\RequirePackage{xcolor}
+
+	\definecolor{blue}{RGB}{0, 0, 255}
+	\definecolor{bluetext}{RGB}{0, 0, 64}
+
+	\definecolor{green}{RGB}{0, 128, 0}
+	\definecolor{greentext}{RGB}{0, 64, 0}
+
+	\definecolor{orange}{RGB}{255, 165, 0}
+	\definecolor{orangetext}{RGB}{255, 140, 0}
+
+	% meth functions
+	\DeclareMathOperator{\arccsc}{arccsc}
+	\DeclareMathOperator{\arcsec}{arcsec}
+	\DeclareMathOperator{\arccot}{arccot}
+
+	\DeclareMathOperator{\cis}{cis}
+
+	\DeclareMathOperator{\realpart}{Re}
+	\DeclareMathOperator{\imaginarypart}{Im}
+
+	\DeclareMathOperator{\minimum}{min}
+	\DeclareMathOperator{\maximum}{max}
+
+	\DeclareMathOperator{\lcm}{lcm}
+
+	% Subsubsection commands
+	\newenvironment{theorem}[1]
+		% Begin
+		{
+			% Swap the subsection number with title name + change title color + change font of "subtitle"
+			\titleformat{\subsection}{\normalfont\normalsize\bfseries\color{bluetext}}{##1 \thesubsection\space\normalfont\fontfamily{cmss}\selectfont #1}{0in}{}
+			
+			\begin{tcolorbox}[width = 1\linewidth, colframe = blue, colback = white, boxsep = 0.075in, arc = 0.15in, boxrule = 1pt]
+				\subsection{Theorem}
+		}
+		% End
+		{
+			\end{tcolorbox}
+			
+			% Reset formatting of the title
+			\titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection}{1em}{}
+		}
+
+	\newenvironment{definition}[1]
+		% Begin
+		{
+			% Swap the subsection number with title name + change title color + change font of "subtitle"
+			\titleformat{\subsection}{\normalfont\normalsize\bfseries\color{greentext}}{##1 \thesubsection\space\normalfont\fontfamily{cmss}\selectfont #1}{0in}{}
+
+			\begin{tcolorbox}[width = 1\linewidth, colframe = green, colback = white, boxsep = 0.075in, arc = 0.15in, boxrule = 1pt]
+				\subsection{Definition}
+		}
+		% End
+		{
+			\end{tcolorbox}
+
+			% Reset formatting of the title
+			\titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection}{1em}{}
+		}
+
+	\newenvironment{example}[1]
+		% Begin
+		{
+			% Swap the subsection number with title name + change title color + change font of "subtitle"
+			\titleformat{\subsection}{\normalfont\normalsize\bfseries\color{orangetext}}{##1 \thesubsection\space\normalfont\fontfamily{cmss}\selectfont #1}{0in}{}
+
+			\begin{tcolorbox}[width = 1\linewidth, colframe = orange, colback = white, boxsep = 0.075in, arc = 0in, boxrule = 1pt]
+				\subsection{Example}
+		}
+		% End
+		{
+			\end{tcolorbox}
+			
+			% Reset formatting of the title
+			\titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection}{1em}{}
+		}
+		
+	\newenvironment{note}
+		% Begin
+		{
+			% Swap the subsection number with title name + change title color
+			\titleformat{\subsection}{\normalfont\normalsize\bfseries\color{black}}{##1 \thesubsection}{0in}{}
+
+			\begin{tcolorbox}[width = 1\linewidth, colframe = black, colback = white, boxsep = 0.075in, arc = 0in, boxrule = 1pt]
+				\subsection{Note}
+		}
+		% End
+		{
+			\end{tcolorbox}
+
+			% Reset formatting of the title
+			\titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection}{1em}{}
+		}
+\fi

@@ -17,11 +17,11 @@
 
 % if mla == true
 \ifmla
-	% Change Font Size To 12
+	% change font size to 12
 	\documentclass[12pt]{article}
 
-	% US Letter Paper (8.5in x 11in)
-	% 1 Inch Margins On All Sides
+	% US letter paper (8.5in x 11in)
+	% 1 inch margins on all sides
 	\RequirePackage[paperwidth = 8.5in, paperheight = 11in, left = 1in, right = 1in, top = 1in, bottom = 1in]{geometry}
 
 	% times new roman font
@@ -44,6 +44,13 @@
 \ifcmhb
 	% asymptote, but better
 	\RequirePackage{tikz}
+
+	% tikz stuff (frame for picture)
+	\usetikzlibrary{backgrounds}
+	% angles and sides labeling
+	\RequirePackage{tkz-euclide}
+	% tkz-euclide refuses to work without this
+	\usetkzobj{all}
 
 	% grids and stuff like that
 	\RequirePackage{array}
@@ -101,7 +108,7 @@
 
 	\DeclareMathOperator{\lcm}{lcm}
 
-	% Subsubsection commands
+	% subsection commands
 	\newenvironment{theorem}[1]
 		% Begin
 		{
